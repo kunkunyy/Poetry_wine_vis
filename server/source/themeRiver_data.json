@@ -1,0 +1,452 @@
+[
+    {
+        "year": "先秦",
+        "type": "喜",
+        "count": 8
+    },
+    {
+        "year": "先秦",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "先秦",
+        "type": "哀",
+        "count": 33
+    },
+    {
+        "year": "先秦",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "先秦",
+        "type": "思",
+        "count": 1
+    },
+    {
+        "year": "秦",
+        "type": "喜",
+        "count": 0
+    },
+    {
+        "year": "秦",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "秦",
+        "type": "哀",
+        "count": 0
+    },
+    {
+        "year": "秦",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "秦",
+        "type": "思",
+        "count": 0
+    },
+    {
+        "year": "汉",
+        "type": "喜",
+        "count": 2
+    },
+    {
+        "year": "汉",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "汉",
+        "type": "哀",
+        "count": 21
+    },
+    {
+        "year": "汉",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "汉",
+        "type": "思",
+        "count": 0
+    },
+    {
+        "year": "三国",
+        "type": "喜",
+        "count": 2
+    },
+    {
+        "year": "三国",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "三国",
+        "type": "哀",
+        "count": 31
+    },
+    {
+        "year": "三国",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "三国",
+        "type": "思",
+        "count": 3
+    },
+    {
+        "year": "魏晋南北朝",
+        "type": "喜",
+        "count": 25
+    },
+    {
+        "year": "魏晋南北朝",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "魏晋南北朝",
+        "type": "哀",
+        "count": 346
+    },
+    {
+        "year": "魏晋南北朝",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "魏晋南北朝",
+        "type": "思",
+        "count": 28
+    },
+    {
+        "year": "隋",
+        "type": "喜",
+        "count": 2
+    },
+    {
+        "year": "隋",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "隋",
+        "type": "哀",
+        "count": 27
+    },
+    {
+        "year": "隋",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "隋",
+        "type": "思",
+        "count": 2
+    },
+    {
+        "year": "唐",
+        "type": "喜",
+        "count": 224
+    },
+    {
+        "year": "唐",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "唐",
+        "type": "哀",
+        "count": 3905
+    },
+    {
+        "year": "唐",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "唐",
+        "type": "思",
+        "count": 564
+    },
+    {
+        "year": "五代十国",
+        "type": "喜",
+        "count": 19
+    },
+    {
+        "year": "五代十国",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "五代十国",
+        "type": "哀",
+        "count": 281
+    },
+    {
+        "year": "五代十国",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "五代十国",
+        "type": "思",
+        "count": 63
+    },
+    {
+        "year": "宋",
+        "type": "喜",
+        "count": 1754
+    },
+    {
+        "year": "宋",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "宋",
+        "type": "哀",
+        "count": 24515
+    },
+    {
+        "year": "宋",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "宋",
+        "type": "思",
+        "count": 2947
+    },
+    {
+        "year": "元",
+        "type": "喜",
+        "count": 606
+    },
+    {
+        "year": "元",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "元",
+        "type": "哀",
+        "count": 9679
+    },
+    {
+        "year": "元",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "元",
+        "type": "思",
+        "count": 1102
+    },
+    {
+        "year": "金",
+        "type": "喜",
+        "count": 39
+    },
+    {
+        "year": "金",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "金",
+        "type": "哀",
+        "count": 512
+    },
+    {
+        "year": "金",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "金",
+        "type": "思",
+        "count": 48
+    },
+    {
+        "year": "明",
+        "type": "喜",
+        "count": 1375
+    },
+    {
+        "year": "明",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "明",
+        "type": "哀",
+        "count": 21984
+    },
+    {
+        "year": "明",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "明",
+        "type": "思",
+        "count": 2855
+    },
+    {
+        "year": "清",
+        "type": "喜",
+        "count": 1284
+    },
+    {
+        "year": "清",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "清",
+        "type": "哀",
+        "count": 25445
+    },
+    {
+        "year": "清",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "清",
+        "type": "思",
+        "count": 2610
+    },
+    {
+        "year": "民国",
+        "type": "喜",
+        "count": 137
+    },
+    {
+        "year": "民国",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "民国",
+        "type": "哀",
+        "count": 2329
+    },
+    {
+        "year": "民国",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "民国",
+        "type": "思",
+        "count": 284
+    },
+    {
+        "year": "现当代",
+        "type": "喜",
+        "count": 110
+    },
+    {
+        "year": "现当代",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "现当代",
+        "type": "哀",
+        "count": 2887
+    },
+    {
+        "year": "现当代",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "现当代",
+        "type": "思",
+        "count": 301
+    },
+    {
+        "year": "现代",
+        "type": "喜",
+        "count": 0
+    },
+    {
+        "year": "现代",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "现代",
+        "type": "哀",
+        "count": 16
+    },
+    {
+        "year": "现代",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "现代",
+        "type": "思",
+        "count": 5
+    },
+    {
+        "year": "近现代",
+        "type": "喜",
+        "count": 88
+    },
+    {
+        "year": "近现代",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "近现代",
+        "type": "哀",
+        "count": 540
+    },
+    {
+        "year": "近现代",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "近现代",
+        "type": "思",
+        "count": 112
+    },
+    {
+        "year": "当代",
+        "type": "喜",
+        "count": 150
+    },
+    {
+        "year": "当代",
+        "type": "乐",
+        "count": 0
+    },
+    {
+        "year": "当代",
+        "type": "哀",
+        "count": 2431
+    },
+    {
+        "year": "当代",
+        "type": "恚",
+        "count": 0
+    },
+    {
+        "year": "当代",
+        "type": "思",
+        "count": 332
+    }
+]

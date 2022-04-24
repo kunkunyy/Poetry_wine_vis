@@ -1,46 +1,56 @@
 <template>
   <div id="app">
-    <!-- <img src="./assets/logo.png">
-    <router-view/> -->
-    <div class="left">
-      <div class="item1"></div>
-      <div class="item2">
-        <wordCloud></wordCloud>
+    <div class="top"></div>
+    <div class="middle">
+      <div class="m-left">
+        <PoetryList></PoetryList>
       </div>
-      <div class="item3">
-        <forceGuide></forceGuide>
+      <div class="m-middle">
+        <MapChart></MapChart>
+      </div>
+      <div class="m-right">
+        <ForceGuideChart></ForceGuideChart>
       </div>
     </div>
-    <div class="right">
-      <div class="map">
-        <mapChart></mapChart>
+    <div class="bottom">
+      <div class="b-left">
+
       </div>
-      <div class="themeriver">
-        <themeriver></themeriver>
+      <div class="b-right">
+        <div class="b-right-top">
+          <WordCloudChart></WordCloudChart>
+        </div>
+        <div class="b-right-bottom">
+          <ThemeRiverChart></ThemeRiverChart>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import mapChart from "./components/MapChart.vue";
-import themeriver from "./components/ThemeRiverChart.vue"
-import forceGuide from "./components/ForceGuideChart.vue"
-import wordCloud from "./components/WordCloudChart.vue"
+import MapChart from "./components/MapChart.vue";
+import PieChart from "./components/PieChart.vue";
+import ThemeRiverChart from "./components/ThemeRiverChart.vue";
+import WordCloudChart from "./components/WordCloudChart.vue";
+import PoetryList from "./components/PoetryList.vue";
+import ForceGuideChart from "./components/ForceGuideChart.vue"
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    mapChart,
-    themeriver,
-    forceGuide,
-    wordCloud,
+    MapChart,
+    PieChart,
+    ThemeRiverChart,
+    WordCloudChart,
+    PoetryList,
+    ForceGuideChart,
   },
   data() {
     return {
       msg: "Welcome to Your Vue.js App",
     };
   },
-}
+};
 </script>
 
 <style>
@@ -49,58 +59,64 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
-  background-color: rgb(245, 247, 159);
-}
-.left{
-  width: 35%;
-  flex-shrink: 0;
-  /* background-color: rgb(159, 247, 166); */
-  display: flex;
+  background-color: rgb(251, 252, 210);
   flex-direction: column;
 }
-.right{
-  flex-grow: 1;
-  /* background-color: rgb(134, 197, 197); */
-  display: flex;
-  flex-direction: column;
+.top {
+  height: 5%;
+  width: calc(100% - 17px);
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 2px;
+  border: 1px solid rgb(163, 163, 163);
 }
-.item1{
-  width: auto;
-  height: 20%;
-  margin: 15px 15px 0 15px;
-  flex: auto;
-  border: 2px solid black;
-  /* background-color: rgb(161, 134, 197); */
-}
-.item2{
-  width: auto;
-  height: 20%;
-  margin: 15px 15px 0 15px;
-  flex: auto;
-  border: 2px solid black;
-  /* background-color: rgb(96, 121, 175); */
-}
-.item3{
-  width: auto;
-  height: 30%;
-  margin: 15px 15px 5px 15px;
-  flex: auto;
-  border: 2px solid black;
-  /* background-color: rgb(207, 139, 139); */
-}
-.map{
-  width: auto;
+.middle {
   height: 60%;
-  margin-right: 15px;
-  margin-top: 15px;
-  border: 2px solid #000000;
-  /* background-color: rgb(101, 180, 94); */
+  width: calc(100% - 15px);
+  margin-left: 5px;
+  margin-right: 5px;
+  display: flex;
 }
-.themeriver{
-  width: auto;
-  height: 35.5%;
-  margin: 15px 15px 5px 0;
-  border: 2px solid black;
-  /* background-color: rgb(130, 188, 226); */
+.bottom {
+  height: 35%;
+  width: calc(100% - 15px);
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  display: flex;
+}
+.m-left {
+  width: 20%;
+  height: 100%;
+}
+.m-middle {
+  width: 45%;
+  height: 100%;
+  border: 1px solid rgb(163, 163, 163);
+}
+.m-right {
+  width: 35%;
+  height: 100%;
+  border: 1px solid rgb(163, 163, 163);
+}
+.b-left {
+  height: 100%;
+  width: 20%;
+  border: 1px solid rgb(163, 163, 163);
+}
+.b-right {
+  height: 100%;
+  width: 80%;
+  display: flex;
+  border: 1px solid rgb(163, 163, 163);
+  flex-direction: column;
+}
+.b-right-top{
+  height: 30%;
+  width: 100%;
+}
+.b-right-bottom{
+  height: 70%;
+  width: 100%;
 }
 </style>

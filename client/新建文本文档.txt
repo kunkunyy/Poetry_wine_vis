@@ -1,0 +1,50 @@
+//   let that = this;
+    //   let myChart = echarts.init(document.getElementById("ForceGuideChart"));
+    //   let selected = (function (data) {
+    //     let obj = {};
+    //     data[2].forEach((e) => {
+    //       let name = e.name
+    //       obj[name] = e.name == "三国" ? true : false;
+    //     });
+    //     console.log(obj);
+    //     return obj;
+    //   })(data);
+    //   let option = {
+    //     tooltip: {},
+    //     animationDuration: 3000,
+    //     animationEasingUpdate: "quinticInOut",
+    //     legend: {
+    //       data: data[2],
+    //       selected: selected,
+    //     },
+    //     series: [
+    //       {
+    //         type: "graph",
+    //         layout: "force",
+    //         force: {
+    //           repulsion: 150,
+    //           gravity: 0.1,
+    //           edgeLength: [100, 500],
+    //         },
+    //         data: data[0],
+    //         links: data[1],
+    //         categories: data[2],
+    //         focusNodeAdjacency: true,
+    //         roam: true,
+    //         label: {
+    //           normal: {
+    //             show: true,
+    //             position: "top",
+    //           },
+    //         },
+    //         lineStyle: {
+    //           normal: {
+    //             color: "source",
+    //             curveness: 0.5,
+    //             type: "solid",
+    //           },
+    //         },
+    //       },
+    //     ],
+    //   };
+    //   myChart.setOption(option, true);
