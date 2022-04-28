@@ -12,7 +12,8 @@ var forceRouter = require('./routes/force');
 var barRouter = require('./routes/bar');
 var cloudRouter = require('./routes/cloud');
 var chinaRouter = require('./routes/china');
-var locationRouter = require('./routes/location')
+var locationRouter = require('./routes/location');
+var contentRouter = require('./routes/conent');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use('/bar', barRouter);
 app.use('/cloud', cloudRouter);
 app.use('/china', chinaRouter);
 app.use('/location', locationRouter);
+app.use('/content', contentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -7,7 +7,8 @@ export default new Vuex.Store({
         //要设置的初始属性值
         count: 0,
         dynasty: '先秦',
-        place: ''
+        place: '',
+        content: null,
     },
     getters: { //实时监听state变化值
         getCount(state) { //改变count//测试函数
@@ -17,8 +18,11 @@ export default new Vuex.Store({
             return state.dynasty;
         },
         getPlace() {
-            return state.place
+            return state.place;
         },
+        getContent(){
+            return state.content;
+        }
     },
     mutations: {
         addCount(state, num) { //在commit时需多传入num参数//测试函数

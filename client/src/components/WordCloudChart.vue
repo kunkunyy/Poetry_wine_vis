@@ -23,7 +23,6 @@ export default {
   watch: {
     getDynasty:function(newVal,oldVal){
       this.dynasty = newVal;
-      console.log(this.dynasty)
       this.ChartInit(this);
     }
   },

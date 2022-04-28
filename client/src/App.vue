@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="top"></div>
+    <!-- <div class="top"></div> -->
     <div class="middle">
       <div class="m-left">
         <PoetryList></PoetryList>
@@ -14,7 +14,7 @@
     </div>
     <div class="bottom">
       <div class="b-left">
-
+        <Content></Content>
       </div>
       <div class="b-right">
         <div class="b-right-top">
@@ -34,7 +34,8 @@ import PieChart from "./components/PieChart.vue";
 import ThemeRiverChart from "./components/ThemeRiverChart.vue";
 import WordCloudChart from "./components/WordCloudChart.vue";
 import PoetryList from "./components/PoetryList.vue";
-import ForceGuideChart from "./components/ForceGuideChart.vue"
+import ForceGuideChart from "./components/ForceGuideChart.vue";
+import Content from "./components/Content.vue"
 export default {
   name: "App",
   components: {
@@ -44,6 +45,7 @@ export default {
     WordCloudChart,
     PoetryList,
     ForceGuideChart,
+    Content,
   },
   data() {
     return {
@@ -71,14 +73,15 @@ export default {
   border: 1px solid rgb(163, 163, 163);
 }
 .middle {
-  height: 60%;
+  /* height: 60%; */
+  height: 70%;
   width: calc(100% - 15px);
   margin-left: 5px;
   margin-right: 5px;
   display: flex;
 }
 .bottom {
-  height: 35%;
+  height: 30%;
   width: calc(100% - 15px);
   margin-bottom: 5px;
   margin-left: 5px;

@@ -5,11 +5,14 @@
     </div>
     <div id="second">
       <el-table
-        :data="table1"
+        :data="tabledata"
         height="100%"
         style="width: 100%"
         stripe
-        :cell-style="{ border: '0px solid #F00' }"
+        @row-dblclick="selectPoetry"
+        :cell-style="{
+          padding: '5px 0'
+        }"
         :row-style="{
           background: 'rgb(251, 252, 210)',
           fontSize: '10px',
@@ -17,15 +20,16 @@
         :header-cell-style="{
           background: 'rgb(251, 252, 210)',
           fontSize: '12px',
+          padding: '5px 0'
         }"
       >
         <el-table-column
-          prop="date"
+          prop="title"
           label="诗歌名称"
-          width="100"
+          width="120"
         ></el-table-column>
-        <el-table-column prop="name" label="作者" width="100"></el-table-column>
-        <el-table-column prop="address" label="诗歌情感"></el-table-column>
+        <el-table-column prop="author" label="作者" width="80"></el-table-column>
+        <el-table-column prop="emotion" label="诗歌情感"></el-table-column>
       </el-table>
     </div>
   </div>
@@ -39,59 +43,41 @@ export default {
   name: "PoetryList",
   data() {
     return {
-      table1: [
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          address: " 1518 弄",
-        },
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          address: " 1518 弄",
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎",
-          address: " 1518 弄",
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎",
-          address: " 1518 弄",
-        },
-        {
-          date: "2016-05-08",
-          name: "王小虎",
-          address: " 1518 弄",
-        },
-        {
-          date: "2016-05-06",
-          name: "王小虎",
-          address: " 1518 弄",
-        },
-        {
-          date: "2016-05-07",
-          name: "王小虎",
-          address: " 1518 弄",
-        },
-        {
-          date: "2016-05-07",
-          name: "王小虎",
-          address: " 1518 弄",
-        },
-        {
-          date: "2016-05-07",
-          name: "王小虎",
-          address: " 1518 弄",
-        },
-      ],
       barchart: null,
-      bardata: null
+      bardata: null,
+      tabledata: null,
+      dynasty: '',
+      place: '',
     };
   },
   computed: {
-    
+    getPlace(){
+      return this.place;
+    },
+    getDynasty(){
+      return this.$store.state.dynasty; 
+    }
+  },
+  watch:{
+    getPlace: function(newVal,oldVal){
+      if(this.dynasty !== ''){
+        this.dynasty = '';
+      }
+      this.place = newVal;
+      this.updateData(newVal,oldVal);
+    },
+    getDynasty: function(newVal,oldVal){
+      if(this.place !== ''){
+        this.place = '';
+      }
+      this.dynasty = newVal;
+      this.updateData(newVal,oldVal);
+    }
+  },
+  created () {
+    axios.get(`http://localhost:3000/content?dynasty=${this.dynasty}&place=${this.place}`).then((res)=>{
+      this.tabledata = res.data;
+    });
   },
   mounted() {
     axios.get("http://localhost:3000/bar").then((res) => {
@@ -150,14 +136,25 @@ export default {
         ],
       });
       that.barchart.on('axis-label:click',(e)=>{
-        console.log(e.target.attrs.text)
+        this.place = e.target.attrs.text;
       })
       that.barchart.render();
     },
-
-  },
-  watch: {
-
+    selectPoetry(row,column,event){
+      console.log(row);
+      this.$store.state.content = row;
+    },
+    updateData(newVal,oldVal){
+      if(newVal !== oldVal){
+        axios.get(`http://localhost:3000/content?dynasty=${this.dynasty}&place=${this.place}`).then((res)=>{
+          this.tabledata = res.data;
+        });
+      }else{
+        axios.get(`http://localhost:3000/content?dynasty=${this.dynasty}&place=${this.place}`).then((res)=>{
+          this.tabledata = res.data;
+        });
+      }
+    }
   },
 };
 </script>

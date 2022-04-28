@@ -1,5 +1,13 @@
 <template>
-  <div id="mapChart"></div>
+  <div id="mapChart">
+    <div class="legend">
+      <div><span style="background-color: #cb181d" @click="mapInterctionSetting" id="喜"></span>&nbsp;&nbsp;&nbsp;喜</div>
+      <div><span style="background-color: #238b45" @click="mapInterctionSetting" id="全部"></span>&nbsp;&nbsp;&nbsp;乐</div>
+      <div><span style="background-color: #4292c6" @click="mapInterctionSetting" id="哀"></span>&nbsp;&nbsp;&nbsp;哀</div>
+      <div><span style="background-color: #6a51a3" @click="mapInterctionSetting" id="全部"></span>&nbsp;&nbsp;&nbsp;恚</div>
+      <div><span style="background-color: #6a51a3" @click="mapInterctionSetting" id="思"></span>&nbsp;&nbsp;&nbsp;思</div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -20,7 +28,6 @@ export default {
     this.map = "";
     this.mapInit(this);
     this.mapLoadGeojson(this);
-    this.mapInterctionSetting(this);
   },
   computed: {
 
@@ -292,8 +299,28 @@ export default {
         "waterway-label"
       );
     },
-    mapInterctionSetting(that) {
-      
+    mapInterctionSetting(e) {
+      let cur = e.target.id;
+      if(cur === '全部'){
+        this.map.setLayoutProperty('xi-heat','visibility','visible')
+        this.map.setLayoutProperty('ai-heat','visibility','visible')
+        this.map.setLayoutProperty('si-heat','visibility','visible')
+      }
+      else if(cur === '喜'){
+        this.map.setLayoutProperty('xi-heat','visibility','visible')
+        this.map.setLayoutProperty('ai-heat','visibility','none')
+        this.map.setLayoutProperty('si-heat','visibility','none')
+      }
+      else if(cur === '哀'){
+        this.map.setLayoutProperty('ai-heat','visibility','visible')
+        this.map.setLayoutProperty('xi-heat','visibility','none')
+        this.map.setLayoutProperty('si-heat','visibility','none')
+      }
+      else if(cur === '思'){
+        this.map.setLayoutProperty('si-heat','visibility','visible')
+        this.map.setLayoutProperty('ai-heat','visibility','none')
+        this.map.setLayoutProperty('xi-heat','visibility','none')
+      }
     },
   },
 };
@@ -303,8 +330,34 @@ export default {
 #mapChart {
   height: 100%;
   width: 100%;
+  position: relative;
 }
 .mapboxgl-control-container {
   visibility: hidden;
+}
+.legend {
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 3px;
+  bottom: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  border: 1px solid gray;
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  padding: 10px;
+  position: absolute;
+  right: 10px;
+  width: 50px;
+  z-index: 1;
+  border-radius: 10%;
+}
+.legend div span {
+  border-radius: 50%;
+  display: inline-block;
+  height: 15px;
+  margin-right: 5px;
+  width: 15px;
+}
+.legend div{
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
 }
 </style>

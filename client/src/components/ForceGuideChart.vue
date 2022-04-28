@@ -1,5 +1,38 @@
 <template>
-  <div id="ForceGuideChart"></div>
+  <div id="ForceGuideChart">
+    <div id="option">
+      <div>
+        <el-tooltip
+          class="item"
+          effect="light"
+          content="清除现存的放大镜"
+          placement="right-start"
+        >
+          <el-button icon="el-icon-brush" circle @click="clearFishEyes"></el-button>
+        </el-tooltip>
+      </div>
+      <div>
+        <el-tooltip
+          class="item"
+          effect="light"
+          content="是否开启放大镜"
+          placement="right-start"
+        >
+          <el-button icon="el-icon-search" type="warning" circle @click="changeState"></el-button>
+        </el-tooltip>
+      </div>
+      <div>
+        <el-dropdown @command="changeModel">
+          <el-button ref="setting" icon="el-icon-setting" type="warning" circle></el-button>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item command ="mousemove">mousemove</el-dropdown-item>
+            <el-dropdown-item command ="drag">drag</el-dropdown-item>
+            <el-dropdown-item command ="click">click</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -9,26 +42,31 @@ import G6 from "@antv/g6";
 import axios from "axios";
 export default {
   name: "ForceGuideChart",
-  props: [""],
   data() {
-    return {};
+    return {
+      able: "默认状态",
+      fisheye: null,
+      graph: null,
+      setting: null,
+    };
   },
   computed: {},
   mounted() {
+    this.setting = this.$refs.setting;
     axios.get("http://localhost:3000/force").then((res) => {
       this.dataset = res.data;
-      this.forceGuideChartInit(this.dataset["唐"]);
+      this.forceGuideChartInit(this.dataset["三国"]);
     });
   },
   methods: {
     forceGuideChartInit(data) {
       let nodes = data.node;
       let edges = data.edge;
-      let fisheye = new G6.Fisheye({
+      this.fisheye = new G6.Fisheye({
         r: 200,
         showLabel: true,
       });
-      const graph = new G6.Graph({
+      this.graph = new G6.Graph({
         container: document.getElementById("ForceGuideChart"),
         width: document.getElementById("ForceGuideChart").scrollWidth,
         height: document.getElementById("ForceGuideChart").scrollHeight,
@@ -36,7 +74,7 @@ export default {
           type: "force",
           preventOverlap: true,
         },
-        plugins: [fisheye],
+        plugins: [this.fisheye],
         // fitView: true,
         modes: {
           default: ["drag-canvas", "zoom-canvas", "activate-relations"],
@@ -83,12 +121,12 @@ export default {
           // },
         },
       });
-      graph.data({
+      this.graph.data({
         nodes,
         edges,
       });
-      graph.render();
-      graph.getNodes().forEach((node) => {
+      this.graph.render();
+      this.graph.getNodes().forEach((node) => {
         node
           .getContainer()
           .getChildren()
@@ -96,25 +134,25 @@ export default {
             if (shape.get("type") === "text") shape.hide();
           });
       });
-      graph.on("node:dragstart", function (e) {
+      this.graph.on("node:dragstart", function (e) {
         graph.layout();
         refreshDragedNodePosition(e);
       });
-      graph.on("node:drag", function (e) {
-        const forceLayout = graph.get("layoutController").layoutMethods[0];
+      this.graph.on("node:drag", function (e) {
+        const forceLayout = this.graph.get("layoutController").layoutMethods[0];
         forceLayout.execute();
         refreshDragedNodePosition(e);
       });
-      graph.on("node:dragend", function (e) {
+      this.graph.on("node:dragend", function (e) {
         e.item.get("model").fx = null;
         e.item.get("model").fy = null;
       });
       if (typeof window !== "undefined")
         window.onresize = () => {
-          if (!graph || graph.get("destroyed")) return;
+          if (!this.graph || this.graph.get("destroyed")) return;
           if (!container || !container.scrollWidth || !container.scrollHeight)
             return;
-          graph.changeSize(container.scrollWidth, container.scrollHeight);
+          this.graph.changeSize(container.scrollWidth, container.scrollHeight);
         };
       function refreshDragedNodePosition(e) {
         const model = e.item.get("model");
@@ -122,6 +160,42 @@ export default {
         model.fy = e.y;
       }
     },
+    clearFishEyes(){
+      this.fisheye.clear();
+    },
+    changeState(e){
+      let arr = e.target.className.split(" ");
+      if(arr.indexOf('el-button--default')!== -1){
+        this.setting.type = 'warning';
+        this.fisheye = new G6.Fisheye({
+          r: 200,
+          showLabel: true,
+        });
+        this.graph.addPlugin(this.fisheye);
+        arr[arr.indexOf('el-button--default')] = "el-button--warning";
+        e.target.className = arr.join(" ");
+      }else{
+        arr[arr.indexOf('el-button--warning')] = "el-button--default";
+        e.target.className = arr.join(" ");
+        this.setting.type = '';
+        // this.node.className.replace('el-button--warning','el-button--default');
+        this.graph.removePlugin(this.fisheye);
+      }
+    },
+    changeModel(type){
+      const fisheyConfigs = this.fisheye._cfgs;
+      this.graph.removePlugin(this.fisheye);
+      this.fisheye = new G6.Fisheye({
+        ...fisheyConfigs,
+        trigger: type,
+      });
+      this.graph.addPlugin(this.fisheye);
+      this.$message({
+        type: 'success',
+        showClose: true,
+        message:`鱼眼放大镜移动模式被设置为：${type}!`
+      });
+    }
   },
   watch: {},
 };
@@ -131,5 +205,21 @@ export default {
 #ForceGuideChart {
   height: 100%;
   width: 100%;
+  position: relative;
+}
+#option {
+  position: absolute;
+  width: 15%;
+  height: 30%;
+  left: 1%;
+  bottom: 5%;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+#option > div {
+  flex: 1;
 }
 </style>
