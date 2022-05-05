@@ -61,7 +61,8 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
-  background-color: rgb(251, 252, 210);
+  background-image: url('./assets/333.jpeg');
+  /* background-color: rgb(226,224,199); */
   flex-direction: column;
 }
 .top {

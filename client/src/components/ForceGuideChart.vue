@@ -55,7 +55,7 @@ export default {
     this.setting = this.$refs.setting;
     axios.get("http://localhost:3000/force").then((res) => {
       this.dataset = res.data;
-      this.forceGuideChartInit(this.dataset["三国"]);
+      this.forceGuideChartInit(this.dataset["五代十国"]);
     });
   },
   methods: {
@@ -79,6 +79,12 @@ export default {
         modes: {
           default: ["drag-canvas", "zoom-canvas", "activate-relations"],
         },
+        defaultEdge:{
+          style: {
+            stroke: '#303952',
+            // ... 其他样式属性
+          },
+        },
         // 配置默认节点参数
         defaultNode: {
           // 设置节点填充色、描边等属性
@@ -89,9 +95,9 @@ export default {
           // },
           // 指定不同情感对应的色板
           donutColorMap: {
-            喜: "#C29D73",
-            哀: "#717A84",
-            思: "#3A4457",
+            喜: "#F97F51",
+            哀: "#778beb",
+            思: "#82589F",
           },
           // 配置标签文本
           labelCfg: {

@@ -33,7 +33,6 @@ router.get('/', function (req, res, next) {
             fs.readFile('./source/location_data.json', 'utf-8', function read(err, data1) {
                 baseData = JSON.parse(data);
                 placeData = JSON.parse(data1);
-                console.log(baseData);
                 let dataset = baseData['先秦'];
                 res.send(dataset);
             })

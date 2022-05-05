@@ -12,8 +12,11 @@ router.get('/', function(req, res, next) {
     res.header("Access-Control-Allow-Methods", "DELETE,PUT,POST,GET,OPTIONS");
 
     fs.readFile('./source/themeRiver_data.json', 'utf-8',function read(err,data){
-        dataset = JSON.parse(data);
-        res.send(dataset)
+        fs.readFile('./source/g2-theme.json','utf-8',function(err,data1){
+            let dataset = JSON.parse(data);
+            let theme = JSON.parse(data1);
+            res.send([theme,dataset])
+        })
     })
 
 })

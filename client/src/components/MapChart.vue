@@ -1,11 +1,11 @@
 <template>
   <div id="mapChart">
     <div class="legend">
-      <div><span style="background-color: #EA4888" @click="mapInterctionSetting" id="喜"></span>&nbsp;&nbsp;&nbsp;喜</div>
-      <div><span style="background-color: #f1c232" @click="mapInterctionSetting" id="全部"></span>&nbsp;&nbsp;&nbsp;乐</div>
-      <div><span style="background-color: #b0e0e6" @click="mapInterctionSetting" id="哀"></span>&nbsp;&nbsp;&nbsp;哀</div>
-      <div><span style="background-color: #00bfff" @click="mapInterctionSetting" id="全部"></span>&nbsp;&nbsp;&nbsp;恚</div>
-      <div><span style="background-color: #e6e6fa" @click="mapInterctionSetting" id="思"></span>&nbsp;&nbsp;&nbsp;思</div>
+      <div><span style="background-color: #F97F51" @click="mapInterctionSetting" id="喜"></span>&nbsp;&nbsp;&nbsp;喜</div>
+      <div><span style="background-color: #F8EFBA" @click="mapInterctionSetting" id="全部"></span>&nbsp;&nbsp;&nbsp;乐</div>
+      <div><span style="background-color: #778beb" @click="mapInterctionSetting" id="哀"></span>&nbsp;&nbsp;&nbsp;哀</div>
+      <div><span style="background-color: #58B19F" @click="mapInterctionSetting" id="全部"></span>&nbsp;&nbsp;&nbsp;恚</div>
+      <div><span style="background-color: #82589F" @click="mapInterctionSetting" id="思"></span>&nbsp;&nbsp;&nbsp;思</div>
     </div>
   </div>
 </template>
@@ -103,7 +103,7 @@ export default {
         source: "china",
         layout: {},
         paint: {
-          "line-color": "#627BC1",
+          "line-color": "#CAD3C8",
           "line-width": 2,
         },
       });
@@ -121,65 +121,6 @@ export default {
         type: "geojson",
         data: features[2],
       });
-      this.map.addLayer(
-        {
-          id: "xi-heat",
-          type: "heatmap",
-          source: "xi",
-          maxzoom: 9,
-          layout: {
-            visibility: "visible",
-          },
-          paint: {
-            "heatmap-weight": [
-              "interpolate",
-              ["linear"],
-              ["get", "mag"],
-              0,
-              0,
-              6,
-              1,
-            ],
-            "heatmap-intensity": [
-              "interpolate",
-              ["linear"],
-              ["zoom"],
-              0,
-              1,
-              9,
-              3,
-            ],
-            "heatmap-color": [
-              "interpolate",
-              ["linear"],
-              ["heatmap-density"],
-              0,
-              "rgba(33,102,172,0)",
-              1,
-              "rgb(178,24,43)",
-            ],
-            "heatmap-radius": [
-              "interpolate",
-              ["linear"],
-              ["zoom"],
-              0,
-              2,
-              9,
-              20,
-            ],
-            "heatmap-opacity": [
-              "interpolate",
-              ["linear"],
-              ["zoom"],
-              4,
-              1,
-              9,
-              0,
-            ],
-          },
-        },
-        "waterway-label"
-      );
       this.map.addLayer(
         {
           id: "ai-heat",
@@ -215,7 +156,66 @@ export default {
               0,
               "rgba(33,102,172,0)",
               1,
-              "rgb(13,79,213)",
+              "#778beb",
+            ],
+            "heatmap-radius": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              0,
+              2,
+              9,
+              20,
+            ],
+            "heatmap-opacity": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              4,
+              1,
+              9,
+              0,
+            ],
+          },
+        },
+        "waterway-label"
+      );
+      this.map.addLayer(
+        {
+          id: "xi-heat",
+          type: "heatmap",
+          source: "xi",
+          maxzoom: 9,
+          layout: {
+            visibility: "visible",
+          },
+          paint: {
+            "heatmap-weight": [
+              "interpolate",
+              ["linear"],
+              ["get", "mag"],
+              0,
+              0,
+              6,
+              1,
+            ],
+            "heatmap-intensity": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              0,
+              1,
+              9,
+              3,
+            ],
+            "heatmap-color": [
+              "interpolate",
+              ["linear"],
+              ["heatmap-density"],
+              0,
+              "rgba(33,102,172,0)",
+              1,
+              "#F97F51",
             ],
             "heatmap-radius": [
               "interpolate",
@@ -274,7 +274,7 @@ export default {
               0,
               "rgba(0,0,0,0)",
               1,
-              "rgb(253,249,4)",
+              "#82589F",
             ],
             "heatmap-radius": [
               "interpolate",

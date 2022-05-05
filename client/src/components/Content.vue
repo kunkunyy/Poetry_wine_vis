@@ -9,10 +9,10 @@
       :data="detail"
       :show-header="false"
       :row-style="{
-          background: 'rgb(251, 252, 210)',
+          background: 'rgba(226,224,199,0)',
           fontSize: '16px',
           fontWeight: 'bold'
-        }"
+      }"
       :cell-style='cellStyle'
       >
         <el-table-column prop="parag" label="诗歌名称">
@@ -28,7 +28,7 @@ export default {
   data() {
     return {
         basedata: null,
-        detail: ["床前明月光，疑是地上霜。","举头望明月，低头思故乡。"],
+        detail: [{"parag":"床前明月光，疑是地上霜。"},{"parag":"举头望明月，低头思故乡。"}],
         title: "静夜思",
         dynasty: "唐",
         author: "李白"
@@ -66,11 +66,11 @@ export default {
       cellStyle({row,column}){
           let str = "text-align:center;padding:5px 0;border:0px solid #F00;";
           if(row.emotion==='哀'){
-            return str + "color: #717A84";
+            return str + "color: #1B9CFC";
           }else if(row.emotion==='喜'){
-            return str + "color: #C29D73";
+            return str + "color: #F97F51";
           }else if(row.emotion==='思'){
-              return str + "color: #3A4457";
+              return str + "color: #82589F";
           }else{
               return str;
           }

@@ -12,7 +12,8 @@ export default {
   data() {
     return {
         dynasty: '唐',
-        basedata:null
+        basedata:null,
+        chart:null
     };
   },
   computed: {
@@ -34,20 +35,16 @@ export default {
   },
   methods: {
     ChartInit(that) {
-      var myChart = echarts.init(document.getElementById("WordCloud"));
+      that.chart = echarts.init(document.getElementById("WordCloud"));
       let option = {
         tooltip: {
           show: true,
-        },
-        textStyle: {
-            fontWeight: 'bolder',
-            fontFamily: 'FangSong'
         },
         series: [
           {
             type: "wordCloud",
             //size: ['9%', '99%'],
-            sizeRange: [10, 60],
+            sizeRange: [6, 60],
             //textRotation: [0, 45, 90, -45],
             rotationRange: [-45, 90],
             //shape: 'circle',
@@ -62,18 +59,10 @@ export default {
             height: "100%",
             drawOutOfBound: false,
             textStyle: {
-              normal: {
-                color: function () {
-                  return (
-                    "rgb(" +
-                    [
-                      Math.round(Math.random() * 160),
-                      Math.round(Math.random() * 160),
-                      Math.round(Math.random() * 160),
-                    ].join(",") +
-                    ")"
-                  );
-                },
+              fontWeight: 'bolder',
+              fontFamily: 'Microsoft YaHei',
+              color: function () {
+                  return '#596275';
               },
               emphasis: {
                 shadowBlur: 10,
@@ -84,7 +73,7 @@ export default {
           },
         ],
       };
-      myChart.setOption(option);
+      that.chart.setOption(option);
     },
   },
 };

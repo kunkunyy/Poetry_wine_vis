@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { Chart } from "@antv/g2";
+import { registerTheme, Chart } from '@antv/g2';
 import DataSet from "@antv/data-set";
 import axios from "axios";
 export default {
@@ -13,12 +13,14 @@ export default {
     return {
       chart: null,
       dataset: null,
+      theme: null
     };
   },
   computed: {},
   mounted() {
     axios.get("http://localhost:3000/theme").then((res) => {
-      this.dataset = res.data;
+      this.dataset = res.data[1];
+      this.theme = res.data[0];
       this.ChartInit(this.dataset);
       console.log(this.dataset)
     });
@@ -26,10 +28,12 @@ export default {
   methods: {
     ChartInit(data) {
       let that = this;
+      registerTheme('newTheme',this.theme);
       that.chart = new Chart({
         container: "ThemeRiverChart",
         autoFit: true,
       });
+      that.chart.theme('newTheme');
       const dv = new DataSet.DataView().source(data);
       console.log(dv)
       dv.transform({

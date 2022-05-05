@@ -8,17 +8,16 @@
         :data="tabledata"
         height="100%"
         style="width: 100%"
-        stripe
         @row-dblclick="selectPoetry"
         :cell-style="{
           padding: '5px 0',
         }"
         :row-style="{
-          background: 'rgb(251, 252, 210)',
+          background: 'rgba(226,224,199,0)',
           fontSize: '10px',
         }"
         :header-cell-style="{
-          background: 'rgb(251, 252, 210)',
+          background: 'rgba(241,241,241)',
           fontSize: '12px',
           padding: '5px 0',
         }"
@@ -212,7 +211,7 @@ export default {
       that.barchart
         .interval()
         .position("place*num")
-        .color("#FF8800")
+        .color("#596275")
         .style({ radius: [20, 20, 0, 0] });
       that.barchart.option("scrollbar", {
         type: "vertical",
@@ -304,7 +303,7 @@ export default {
 }
 .el-table,
 .el-table__expanded-cell {
-  background-color: rgb(251, 252, 210);
+  background-color: rgba(226,224,199,0);
 }
 #barChart {
   width: 100%;
@@ -313,10 +312,10 @@ export default {
 #second ::-webkit-scrollbar {
   width: 16px;
   height: 10px;
-  background-color: rgb(251, 252, 210);
+  background-color: rgba(226,224,199,0);
 }
 #second ::-webkit-scrollbar-thumb {
-  background-color: rgb(196, 197, 197);
+  background-color: rgba(196, 197, 197);
   border-radius: 3px;
 }
 </style>

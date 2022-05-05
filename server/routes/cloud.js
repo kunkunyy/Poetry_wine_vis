@@ -12,11 +12,11 @@ router.get('/', function(req, res, next) {
     res.header("Access-Control-Allow-Methods", "DELETE,PUT,POST,GET,OPTIONS");
 
     fs.readFile('./source/wordCloud_data.json', 'utf-8',function read(err,data){
-        dataset = JSON.parse(data);
+        let dataset = JSON.parse(data);
         for(let key in dataset){
             let len = dataset[key].length;
             // dataset[key] = dataset[key].sort((a,b) => a['value'] < b['value'] ? -1 :0);
-            dataset[key] = dataset[key].slice(0,len >= 1000 ? 1000 : len);
+            dataset[key] = dataset[key].slice(0,len >= 200 ? 200 : len);
         }
         res.send(dataset)
     })
