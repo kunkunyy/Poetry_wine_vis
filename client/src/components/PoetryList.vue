@@ -11,7 +11,7 @@
         stripe
         @row-dblclick="selectPoetry"
         :cell-style="{
-          padding: '5px 0'
+          padding: '5px 0',
         }"
         :row-style="{
           background: 'rgb(251, 252, 210)',
@@ -20,7 +20,7 @@
         :header-cell-style="{
           background: 'rgb(251, 252, 210)',
           fontSize: '12px',
-          padding: '5px 0'
+          padding: '5px 0',
         }"
       >
         <el-table-column
@@ -28,8 +28,35 @@
           label="诗歌名称"
           width="120"
         ></el-table-column>
-        <el-table-column prop="author" label="作者" width="80"></el-table-column>
-        <el-table-column prop="emotion" label="诗歌情感"></el-table-column>
+        <el-table-column prop="author" label="作者" width="100">
+          <template slot="header">
+            <span style="width: 50">作者：</span>
+            <el-select v-model="showname" style="width: 50">
+              <el-option
+                v-for="item in this.namep"
+                :key="item"
+                :lable="item"
+                :value="item"
+                >{{ item }}</el-option
+              >
+            </el-select>
+          </template>
+        </el-table-column>
+
+        <el-table-column prop="emotion" label="诗歌情感">
+          <template slot="header">
+            <span style="width: 50">诗歌情感：</span>
+            <el-select v-model="showemotion" style="width: 50">
+              <el-option
+                v-for="item in this.emotion"
+                :key="item"
+                :lable="item"
+                :value="item"
+                >{{ item }}</el-option
+              >
+            </el-select>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
   </div>
@@ -37,7 +64,7 @@
 
 <script>
 import { Chart } from "@antv/g2";
-import DataSet from "@antv/data-set";
+import DataSet, { CONSTANTS } from "@antv/data-set";
 import axios from "axios";
 export default {
   name: "PoetryList",
@@ -46,46 +73,114 @@ export default {
       barchart: null,
       bardata: null,
       tabledata: null,
-      dynasty: '',
-      place: '',
+      dynasty: "",
+      place: "",
+      showname: "",
+      showemotion: "",
+      namep: ["无名氏", "诗经", "文种", "屈原", "宋玉"],
+      emotion: ["哀", "喜", "思"],
     };
   },
   computed: {
-    getPlace(){
+    getPlace() {
       return this.place;
     },
-    getDynasty(){
-      return this.$store.state.dynasty; 
-    }
+    getDynasty() {
+      return this.$store.state.dynasty;
+    },
   },
-  watch:{
-    getPlace: function(newVal,oldVal){
-      if(this.dynasty !== ''){
-        this.dynasty = '';
+  watch: {
+    getPlace: function (newVal, oldVal) {
+      if (this.dynasty !== "") {
+        this.dynasty = "";
       }
       this.place = newVal;
-      this.updateData(newVal,oldVal);
+      this.updateData(newVal, oldVal);
     },
-    getDynasty: function(newVal,oldVal){
-      if(this.place !== ''){
-        this.place = '';
+    getDynasty: function (newVal, oldVal) {
+      if (this.place !== "") {
+        this.place = "";
       }
       this.dynasty = newVal;
-      this.updateData(newVal,oldVal);
-    }
+      this.updateData(newVal, oldVal);
+    },
+    showname: function (newVal, oldVal) {
+      this.updateTable(newVal, oldVal);
+    },
+    showemotion: function (newVal, oldVal) {
+      this.updateTable1(newVal, oldVal);
+    },
   },
-  created () {
-    axios.get(`http://localhost:3000/content?dynasty=${this.dynasty}&place=${this.place}`).then((res)=>{
-      this.tabledata = res.data;
-    });
+  created() {
+    axios
+      .get(
+        `http://localhost:3000/content?dynasty=${this.dynasty}&place=${this.place}`
+      )
+      .then((res) => {
+        const z = [];
+        const y = [];
+        this.namep = [];
+        this.emotion = [];
+        for (let i = 0; i < res.data.length; i++) {
+          z.push(res.data[i].author);
+          y.push(res.data[i].emotion);
+        }
+        this.namep = this.namep.concat(Array.from(new Set(z)));
+        this.emotion = this.emotion.concat(Array.from(new Set(y)));
+        this.tabledata = res.data;
+        console.log(this.namep);
+        console.log(this.emotion);
+      });
   },
   mounted() {
     axios.get("http://localhost:3000/bar").then((res) => {
       this.bardata = res.data;
+      const z = [];
+      const y = [];
+      this.namep = [];
+      this.emotion = [];
+      for (let i = 0; i < res.data.length; i++) {
+        z.push(res.data[i].author);
+        y.push(res.data[i].emotion);
+      }
+      this.namep = this.namep.concat(Array.from(new Set(z)));
+      this.emotion = this.emotion.concat(Array.from(new Set(y)));
       this.barChartInit(this);
     });
   },
+
   methods: {
+    updateTable(newVal, oldVal) {
+      axios
+      .get(
+        `http://localhost:3000/content?dynasty=${this.dynasty}&place=${this.place}`
+      )
+      .then((res) => {
+        var update = []
+        for(var i=0;i<res.data.length;i++){
+          if(res.data[i].author==newVal){
+            update.push(res.data[i])
+          }
+        }
+        this.tabledata = update;
+      })
+
+    },
+    updateTable1(newVal, oldVal) {
+      axios
+      .get(
+        `http://localhost:3000/content?dynasty=${this.dynasty}&place=${this.place}`
+      )
+      .then((res) => {
+        var update = []
+        for(var i=0;i<res.data.length;i++){
+          if(res.data[i].emotion==newVal){
+            update.push(res.data[i])
+          }
+        }
+        this.tabledata = update;
+      })
+    },
     barChartInit(that) {
       const data = that.bardata;
       that.barchart = new Chart({
@@ -135,26 +230,54 @@ export default {
           },
         ],
       });
-      that.barchart.on('axis-label:click',(e)=>{
+      that.barchart.on("axis-label:click", (e) => {
         this.place = e.target.attrs.text;
-      })
+      });
       that.barchart.render();
     },
-    selectPoetry(row,column,event){
+    selectPoetry(row, column, event) {
       console.log(row);
       this.$store.state.content = row;
     },
-    updateData(newVal,oldVal){
-      if(newVal !== oldVal){
-        axios.get(`http://localhost:3000/content?dynasty=${this.dynasty}&place=${this.place}`).then((res)=>{
-          this.tabledata = res.data;
-        });
-      }else{
-        axios.get(`http://localhost:3000/content?dynasty=${this.dynasty}&place=${this.place}`).then((res)=>{
-          this.tabledata = res.data;
-        });
+    updateData(newVal, oldVal) {
+      if (newVal !== oldVal) {
+        axios
+          .get(
+            `http://localhost:3000/content?dynasty=${this.dynasty}&place=${this.place}`
+          )
+          .then((res) => {
+            this.tabledata = res.data;
+            const z = [];
+            const y = [];
+            this.namep = [];
+            this.emotion = [];
+            for (let i = 0; i < res.data.length; i++) {
+              z.push(res.data[i].author);
+              y.push(res.data[i].emotion);
+            }
+            this.namep = this.namep.concat(Array.from(new Set(z)));
+            this.emotion = this.emotion.concat(Array.from(new Set(y)));
+          });
+      } else {
+        axios
+          .get(
+            `http://localhost:3000/content?dynasty=${this.dynasty}&place=${this.place}`
+          )
+          .then((res) => {
+            this.tabledata = res.data;
+            const z = [];
+            const y = [];
+            this.namep = [];
+            this.emotion = [];
+            for (let i = 0; i < res.data.length; i++) {
+              z.push(res.data[i].author);
+              y.push(res.data[i].emotion);
+            }
+            this.namep = this.namep.concat(Array.from(new Set(z)));
+            this.emotion = this.emotion.concat(Array.from(new Set(y)));
+          });
       }
-    }
+    },
   },
 };
 </script>

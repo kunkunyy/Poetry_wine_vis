@@ -1,11 +1,11 @@
 <template>
   <div id="mapChart">
     <div class="legend">
-      <div><span style="background-color: #cb181d" @click="mapInterctionSetting" id="喜"></span>&nbsp;&nbsp;&nbsp;喜</div>
-      <div><span style="background-color: #238b45" @click="mapInterctionSetting" id="全部"></span>&nbsp;&nbsp;&nbsp;乐</div>
-      <div><span style="background-color: #4292c6" @click="mapInterctionSetting" id="哀"></span>&nbsp;&nbsp;&nbsp;哀</div>
-      <div><span style="background-color: #6a51a3" @click="mapInterctionSetting" id="全部"></span>&nbsp;&nbsp;&nbsp;恚</div>
-      <div><span style="background-color: #6a51a3" @click="mapInterctionSetting" id="思"></span>&nbsp;&nbsp;&nbsp;思</div>
+      <div><span style="background-color: #EA4888" @click="mapInterctionSetting" id="喜"></span>&nbsp;&nbsp;&nbsp;喜</div>
+      <div><span style="background-color: #f1c232" @click="mapInterctionSetting" id="全部"></span>&nbsp;&nbsp;&nbsp;乐</div>
+      <div><span style="background-color: #b0e0e6" @click="mapInterctionSetting" id="哀"></span>&nbsp;&nbsp;&nbsp;哀</div>
+      <div><span style="background-color: #00bfff" @click="mapInterctionSetting" id="全部"></span>&nbsp;&nbsp;&nbsp;恚</div>
+      <div><span style="background-color: #e6e6fa" @click="mapInterctionSetting" id="思"></span>&nbsp;&nbsp;&nbsp;思</div>
     </div>
   </div>
 </template>

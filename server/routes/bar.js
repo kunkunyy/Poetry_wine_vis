@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 
     fs.readFile('./source/barchart_data.json', 'utf-8',function read(err,data){
         dataset = JSON.parse(data);
-        dataset = dataset.sort((a,b)=>a['num'] < b['num'] ? -1 : 0)
+        dataset = dataset.sort((a,b)=>a['num'] < b['num'] ? -1 : 0);
         res.send(dataset)
     })
 

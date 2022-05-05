@@ -20,6 +20,7 @@ export default {
     axios.get("http://localhost:3000/theme").then((res) => {
       this.dataset = res.data;
       this.ChartInit(this.dataset);
+      console.log(this.dataset)
     });
   },
   methods: {
@@ -30,6 +31,7 @@ export default {
         autoFit: true,
       });
       const dv = new DataSet.DataView().source(data);
+      console.log(dv)
       dv.transform({
         type: "percent",
         field: "count",
